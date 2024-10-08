@@ -6,6 +6,43 @@
 
 <link rel="stylesheet" href="/static/css/Inicio.css">
 
+<button class="menu-toggle" id="menuToggle">
+    <i class="fas fa-bars"></i>
+</button>
+
+<div class="side-menu" id="sideMenu">
+    <div class="side-menu-header">
+        <span>Menú</span>
+        <button class="side-menu-close" id="menuClose">
+            <i class="fas fa-times"></i>
+        </button>
+    </div>
+    <div class="side-menu-content">
+        <a href="#" class="side-menu-item">
+            <i class="fas fa-home"></i>
+            <span class="menu-item">Inicio</span>
+        </a>
+        <a href="#" class="side-menu-item">
+            <i class="fas fa-chart-bar"></i>
+            <span class="menu-item">Estadísticas</span>
+        </a>
+        <a href="#" class="side-menu-item">
+            <i class="fas fa-cog"></i>
+            <span class="menu-item">Configuración</span>
+        </a>
+        <div class="theme-switch">
+            <span>Modo oscuro</span>
+            <label class="theme-switch-toggle">
+                <input type="checkbox" id="themeSwitch" checked>
+                <span class="theme-switch-slider"></span>
+            </label>
+        </div>
+        <a onclick="Logout();" class="cursor-pointer side-menu-item">
+            <i class="fas fa-sign-out-alt"></i> <span class="menu-item">Cerrar sesión</span>
+        </a>
+    </div>
+</div>
+
 <div class="container mt-5">
     <div class="row">
         <div class="col-md-6 mb-4">
@@ -79,5 +116,5 @@
 {% endblock content %}
 
 {% block scripts %}
-
+<script src="/static/scripts/Inicio.js"></script>
 {% endblock scripts %}

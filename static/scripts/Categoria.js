@@ -1,6 +1,5 @@
 async function BuscarCategorias() {
-    datos = {}
-    const data = tools.PostBack('/BuscarCategorias', datos);
+    const data = await tools.PostBack('/BuscarCategorias', {});
     if (data.status == 1) {
         alert(data.msj);
         return;
@@ -9,14 +8,20 @@ async function BuscarCategorias() {
 }
 
 async function RegCategoria() {
-    datos = {}
-    const data = tools.PostBack('/RegCategoria', datos);
+    const datos = {
+        txt_nombre: $('#txt_nombre').val()
+    }
+    const data = await tools.PostBack('/RegCategoria', datos);
     if (data.status == 1) {
         alert(data.msj);
         return;
     }
     BuscarCategorias();
 }
+
+$('#addcategory').click(() => {
+    RegCategoria();
+});
 
 $(() => {
     BuscarCategorias();

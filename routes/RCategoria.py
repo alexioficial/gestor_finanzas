@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, url_for, session
+from flask import Blueprint, render_template, request
 from routes.RAuth import login_requerido
 import model.MCategoria as mcategoria
 
@@ -12,8 +12,10 @@ def Categoria():
 @bp.post('/RegCategoria')
 def RegCategoria():
     try:
-        html = ''
-        return {'status': 0, 'html': html}
+        data = request.get_json()
+        txt_nombre = data.get('txt_nombre')
+        mcategoria.RegCategoria(txt_nombre)
+        return {'status': 0}
     except Exception as e:
         return {'status': 1, 'msj': str(e)}
 

@@ -1,3 +1,5 @@
 flask
 pandas
 matplotlib
+flask_session
+flask_socketio

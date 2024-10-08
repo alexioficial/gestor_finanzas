@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+
+{% block title %}Inicio{% endblock title %}
+
+{% block content %}
+
+<link rel="stylesheet" href="/static/css/Inicio.css">
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-6 mb-4">
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="mb-0"><i class="fas fa-wallet me-2"></i>Nueva Transacción</h2>
+                </div>
+                <div class="card-body">
+                    <form id="transactionForm">
+                        <div class="mb-3">
+                            <label for="description" class="form-label">Descripción</label>
+                            <input type="text" class="form-control" id="description" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="amount" class="form-label">Monto</label>
+                            <input type="number" class="form-control" id="amount" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="type" class="form-label">Tipo</label>
+                            <select class="form-select" id="type" required>
+                                <option value="income">Ingreso</option>
+                                <option value="expense">Gasto</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">Agregar Transacción</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 mb-4">
+            <div class="card balance-card mb-4">
+                <div class="card-body text-center">
+                    <h3 class="mb-3">Balance Total</h3>
+                    <p class="balance-amount mb-0">$1,234.56</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="mb-0"><i class="fas fa-list-ul me-2"></i>Transacciones Recientes</h3>
+                </div>
+                <div class="card-body">
+                    <ul id="transactionList" class="list-group">
+                        <li class="list-group-item">
+                            Salario
+                            <span>
+                                <i class="fas fa-plus text-success me-2"></i>
+                                <span class="badge bg-success">+$2,500.00</span>
+                            </span>
+                        </li>
+                        <li class="list-group-item">
+                            Alquiler
+                            <span>
+                                <i class="fas fa-minus text-danger me-2"></i>
+                                <span class="badge bg-danger">-$800.00</span>
+                            </span>
+                        </li>
+                        <li class="list-group-item">
+                            Compras supermercado
+                            <span>
+                                <i class="fas fa-minus text-danger me-2"></i>
+                                <span class="badge bg-danger">-$150.00</span>
+                            </span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
+
+{% block scripts %}
+
+{% endblock scripts %}

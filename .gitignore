@@ -4,7 +4,6 @@ venv/
 *.pyc
 .todo
 __pycache__/
-
 instance/
 dist/
 build/
@@ -12,3 +11,4 @@ flask_session/
 log/
 temp/
 .venv/
+data/

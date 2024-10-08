@@ -12,7 +12,7 @@ def Categoria():
 @bp.post('/RegCategoria')
 def RegCategoria():
     try:
-        
+        html = ''
         return {'status': 0, 'html': html}
     except Exception as e:
         return {'status': 1, 'msj': str(e)}

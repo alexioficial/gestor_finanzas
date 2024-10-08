@@ -1,4 +1,5 @@
 async function BuscarCategorias() {
+    datos = {}
     const data = tools.PostBack('/BuscarCategorias', datos);
     if (data.status == 1) {
         alert(data.msj);
@@ -8,6 +9,7 @@ async function BuscarCategorias() {
 }
 
 async function RegCategoria() {
+    datos = {}
     const data = tools.PostBack('/RegCategoria', datos);
     if (data.status == 1) {
         alert(data.msj);

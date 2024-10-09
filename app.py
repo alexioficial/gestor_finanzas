@@ -24,4 +24,5 @@ app.register_blueprint(Auth)
 app.register_blueprint(Categoria)
 
 if __name__ == '__main__':
-    socketio.run('0.0.0.0', 7100)
+    socketio.run('0.0.0.0', 5000)
+    

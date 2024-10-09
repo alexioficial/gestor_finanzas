@@ -40,3 +40,20 @@ def BuscarCategorias():
         return {'status': 0, 'html': html}
     except Exception as e:
         return {'status': 1, 'msj': str(e)}
+    
+@bp.post('/BuscarCategoriaPorNombre')
+def BuscarCategoriaPorNombre():
+    try:
+        data = request.get_json()
+        nombre = data.get('nombre')
+        categoria = mcategoria.SCategoriasNombre(nombre)
+        if categoria:
+            return {
+                'status': 0,
+                'nombre': categoria.get('nombre'),
+                'status': categoria.get('status')
+            }
+        else:
+            return {'status': 1, 'msj': 'Categoría no encontrada'}
+    except Exception as e:
+        return {'status': 1, 'msj': str(e)}

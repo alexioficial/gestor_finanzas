@@ -11,3 +11,6 @@ def SCategorias():
 
 def SCategoriasActivas():
     return categoria.select({'status': 'A'})
+
+def SCategoriasNombre(nombre):
+    return categoria.select({'nombre': nombre})

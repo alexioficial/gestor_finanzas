@@ -3,3 +3,5 @@ pandas
 matplotlib
 flask_session
 flask_socketio
+pymongo
+python-dotenv

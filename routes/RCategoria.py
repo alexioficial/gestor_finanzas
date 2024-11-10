@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request
+from flask import Blueprint, render_template, request, session
 from routes.RAuth import login_requerido
 import model.MCategoria as mcategoria
 
@@ -13,9 +13,10 @@ def Categoria():
 def RegCategoria():
     try:
         data = request.get_json()
+        idusuario = session.get('idusuario')
         txt_nombre = data.get('txt_nombre')
         chk_status = data.get('chk_status')
-        mcategoria.RegCategoria(txt_nombre, chk_status)
+        mcategoria.RegCategoria(idusuario, txt_nombre, chk_status)
         return {'status': 0}
     except Exception as e:
         return {'status': 1, 'msj': str(e)}
@@ -24,7 +25,8 @@ def RegCategoria():
 def BuscarCategorias():
     try:
         html = ''
-        categorias = mcategoria.SCategorias()
+        idusuario = session.get('idusuario')
+        categorias = mcategoria.SCategorias(idusuario)
         for categoria in categorias:
             activo = 'danger' if not categoria.get('status') else 'success'
             status_text = 'ACTIVO' if categoria.get('status') else 'INACTIVO'
@@ -46,7 +48,8 @@ def BuscarCategoriaPorNombre():
     try:
         data = request.get_json()
         nombre = data.get('nombre')
-        categoria = mcategoria.SCategoriasNombre(nombre)
+        idusuario = session.get('idusuario')
+        categoria = mcategoria.SCategoriasNombre(idusuario, nombre)
         if categoria:
             return {
                 'status': 0,

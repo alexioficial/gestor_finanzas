@@ -1,3 +1,29 @@
+:root {
+    --background-color: #f0f2f5;
+    --text-color: #333333;
+    --card-background: #ffffff;
+    --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    --primary-color: #4a90e2;
+    --primary-hover: #3a7bc8;
+    --list-item-hover: #e9ecef;
+    --input-background: #ffffff;
+    --input-border: #ced4da;
+    --input-text: #333333;
+}
+
+.dark-theme {
+    --background-color: #1a1a1a;
+    --text-color: #ffffff;
+    --card-background: #2c2c2c;
+    --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    --primary-color: #3a7bc8;
+    --primary-hover: #2c5d99;
+    --list-item-hover: #3a3a3a;
+    --input-background: #3a3a3a;
+    --input-border: #555555;
+    --input-text: #ffffff;
+}
+
 body {
     background-color: var(--background-color);
     color: var(--text-color);

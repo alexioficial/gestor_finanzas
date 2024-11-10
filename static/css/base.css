@@ -23,3 +23,129 @@
     --input-border: #555555;
     --input-text: #ffffff;
 }
+
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.container {
+    max-width: 900px;
+}
+
+.card {
+    background-color: var(--card-background);
+    border: none;
+    border-radius: 20px;
+    box-shadow: var(--card-shadow);
+    overflow: hidden;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-header {
+    background-color: var(--primary-color);
+    color: white;
+    border-bottom: none;
+    padding: 20px;
+}
+
+.card-body {
+    padding: 30px;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    border-radius: 50px;
+    padding: 10px 20px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-hover);
+    border-color: var(--primary-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(74, 144, 226, 0.3);
+}
+
+.btn-danger {
+    border-radius: 50px;
+    padding: 10px 20px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.btn-danger:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(226, 81, 74, 0.3);
+}
+
+.form-control,
+.form-select {
+    background-color: var(--input-background);
+    color: var(--input-text);
+    border-radius: 10px;
+    border: 1px solid var(--input-border);
+    padding: 12px;
+}
+
+.form-control:focus,
+.form-select:focus {
+    box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.2);
+    border-color: var(--primary-color);
+}
+
+.form-label {
+    color: var(--text-color);
+    transition: color 0.3s ease;
+}
+
+.list-group-item {
+    background-color: var(--card-background);
+    color: var(--text-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: none;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    padding: 15px;
+    transition: all 0.3s ease;
+}
+
+.list-group-item:hover {
+    background-color: var(--list-item-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.badge {
+    font-size: 1rem;
+    padding: 8px 12px;
+    border-radius: 50px;
+}
+
+.balance-card {
+    background: linear-gradient(135deg, var(--primary-color), #7f5a83);
+    color: white;
+}
+
+.balance-amount {
+    font-size: 2.5rem;
+    font-weight: bold;
+}
+
+input:checked+.theme-switch-slider {
+    background-color: var(--primary-color);
+}
+
+input:checked+.theme-switch-slider:before {
+    transform: translateX(26px);
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}

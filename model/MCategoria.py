@@ -1,16 +1,16 @@
-from model.MMain import categoria
+from components.conexion import categoria, GenerarUUID
 
-def RegCategoria(nombre, status):
-    return categoria.insert({'nombre': nombre, 'status': status})
+def RegCategoria(idusuario, nombre, status):
+    return categoria.insert_one({'idcategoria': GenerarUUID(), 'nombre': nombre, 'status': status, 'idusuario': idusuario})
 
-def UCategoria(idcategoria, nombre, status):
-    return categoria.update({'_uuid_': idcategoria}, {'$set': {'nombre': nombre, 'status': status}})
+def UCategoria(idusuario, idcategoria, nombre, status):
+    return categoria.update_one({'idusuario': idusuario, 'idcategoria': idcategoria}, {'$set': {'nombre': nombre, 'status': status}})
 
-def SCategorias():
-    return categoria.select()
+def SCategorias(idusuario):
+    return list(categoria.find({'idusuario': idusuario}))
 
-def SCategoriasActivas():
-    return categoria.select({'status': 'A'})
+def SCategoriasActivas(idusuario):
+    return list(categoria.find({'idusuario': idusuario, 'status': 'A'}))
 
-def SCategoriasNombre(nombre):
-    return categoria.select({'nombre': nombre})
+def SCategoriasNombre(idusuario, nombre):
+    return categoria.find_one({'idusuario': idusuario, 'nombre': nombre})

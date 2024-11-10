@@ -1,10 +1,7 @@
-from model.MMain import usuario
+from components.conexion import usuario, GenerarUUID
 
 def Registrar(username, password):
-    return usuario.insert({'username': username, 'password': password})
+    return usuario.insert_one({'idusuario': GenerarUUID(), 'username': username, 'password': password})
 
 def Login(username, password):
-    result = usuario.select({'username': username, 'password': password})
-    if not result:
-        return None
-    return result
+    return usuario.find_one({'username': username, 'password': password})

@@ -7,7 +7,7 @@ bp = Blueprint('Auth', __name__)
 def login_requerido(f):
     @wraps(f)
     def decorador(*args, **kwargs):
-        if 'iduser' not in session:
+        if 'idusuario' not in session:
             return redirect(url_for('Auth.Login'))
         return f(*args, **kwargs)
     return decorador
@@ -22,8 +22,7 @@ def Login():
             user = mauth.Login(username, password)
             if user is None:
                 return {'status': 1, 'msj': 'El usuario no existe'}
-            user = user[0]
-            session['iduser'] = user['_uuid_']
+            session['idusuario'] = user['idusuario']
             session['username'] = user['username']
             session['password'] = user['password']
             return {'status': 0, 'redireccion': '/'}

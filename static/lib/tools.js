@@ -15,5 +15,10 @@ const tools = {
                 }
             });
         });
+    },
+    Enter: (selector, callback) => {
+        $(selector).on('keypress', (e) => {
+            if (e.which == 13) callback();
+        });
     }
 };

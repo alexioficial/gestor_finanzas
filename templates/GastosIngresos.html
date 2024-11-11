@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block title %}Gastos e Ingresos{% endblock title %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <!-- Ingresos -->
+        <div class="col-md-6 mb-4">
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="mb-0"><i class="fas fa-plus-circle me-2"></i>Nuevo Ingreso</h2>
+                </div>
+                <div class="card-body">
+                    <div class="mb-3">
+                        <label class="form-label">Monto</label>
+                        <input class="form-control 9N_2D" id="monto_ingreso">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Categoría</label>
+                        <select class="form-select" id="categoria_ingreso"></select>
+                    </div>
+                    <button id="btn_reg_ingreso" class="btn btn-success w-100">Registrar Ingreso</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Gastos -->
+        <div class="col-md-6 mb-4">
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="mb-0"><i class="fas fa-minus-circle me-2"></i>Nuevo Gasto</h2>
+                </div>
+                <div class="card-body">
+                    <div class="mb-3">
+                        <label class="form-label">Monto</label>
+                        <input class="form-control 9N_2D" id="monto_gasto">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Categoría</label>
+                        <select class="form-select" id="categoria_gasto"></select>
+                    </div>
+                    <button id="btn_reg_gasto" class="btn btn-danger w-100">Registrar Gasto</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
+
+{% block scripts %}
+<script src="/static/scripts/GastosIngresos.js"></script>
+{% endblock scripts %} 

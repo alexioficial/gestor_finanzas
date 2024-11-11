@@ -9,6 +9,7 @@ async function BuscarCategorias() {
 
 async function RegCategoria() {
     const datos = {
+        idcategoria: $('#idcategoria').val(),
         txt_nombre: $('#txt_nombre').val(),
         chk_status: $('#chk_status').prop('checked')
     }
@@ -21,60 +22,44 @@ async function RegCategoria() {
     LimpiarCampos();
 }
 
-async function LimpiarCampos() {
-    $('#txt_nombre').val('');
-}
-
-async function LlenarCampos(nombre) {
-    const datos = {nombre : nombre}
-    const data = await tools.PostBack('/BuscarCategoriaPorNombre', datos);
+async function EliminarCategoria() {
+    const datos = {
+        idcategoria: $('#idcategoria').val()
+    }
+    const data = await tools.PostBack('/EliminarCategoria', datos);
     if (data.status == 1) {
         alert(data.msj);
         return;
     }
-    $('#txt_nombre').val(data.nombre);
-    $('#chk_status').prop('checked', data.status);
-    ModifyButton();
+    BuscarCategorias();
+    LimpiarCampos();
 }
 
+async function LimpiarCampos() {
+    $('#txt_nombre').val('');
+    $('#idcategoria').val('');
+}
 
-
-function VerificarCampos() {
+function CamposRequeridos() {
     var valor = $('#txt_nombre').val();
-    if (valor.trim() === '') { // Verifica si está vacío o solo tiene espacios
-        alert('Por favor, ingrese un nombre.');
-        return false;
-    }
-    return true;
+    return !(valor.trim() === '');
 }
 
-function ModifyButton() {
-    $("#addcategory").addClass("d-none");
-    $('#editcategory').removeClass("d-none");
+function LlenarCampos(categoria) {
+    $('#idcategoria').val(categoria.idcategoria);
+    $('#txt_nombre').val(categoria.nombre);
+    $('#chk_status').prop('checked', categoria.status);
 }
-
-function AddButton() {
-    $("#addcategory").removeClass("d-none");
-    $('#editcategory').addClass("d-none");
-}
-
-
-$('#addcategory').click(() => {
-    VerificarCampos() ? RegCategoria() : null;
-});
 
 $(() => {
     BuscarCategorias();
-})
-
-$('#cleanButton').click(() => {
-    LimpiarCampos();
-    AddButton();
+    $('#btn_guardar').click(() => {
+        CamposRequeridos() ? RegCategoria() : null;
+    });
+    $('#btn_limpiar_categoria').click(() => {
+        LimpiarCampos();
+    });
+    $('#btn_eliminar').click(() => {
+        EliminarCategoria();
+    });
 });
-
-
-$('#categorias').on('click', 'li', async function () {
-    const nombreCategoria = $(this).clone().children().remove().end().text().trim();
-    LlenarCampos(nombreCategoria);
-});
-

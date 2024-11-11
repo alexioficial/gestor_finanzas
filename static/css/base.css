@@ -9,6 +9,7 @@
     --input-background: #ffffff;
     --input-border: #ced4da;
     --input-text: #333333;
+    --input-placeholder: #888888;
 }
 
 .dark-theme {
@@ -22,6 +23,7 @@
     --input-background: #3a3a3a;
     --input-border: #555555;
     --input-text: #ffffff;
+    --input-placeholder: #888888;
 }
 
 body {
@@ -55,13 +57,16 @@ body {
     padding: 30px;
 }
 
-.btn-primary {
-    background-color: var(--primary-color);
-    border-color: var(--primary-color);
+.btn {
     border-radius: 50px;
     padding: 10px 20px;
     font-weight: bold;
     transition: all 0.3s ease;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
 }
 
 .btn-primary:hover {
@@ -69,13 +74,6 @@ body {
     border-color: var(--primary-hover);
     transform: translateY(-2px);
     box-shadow: 0 4px 10px rgba(74, 144, 226, 0.3);
-}
-
-.btn-danger {
-    border-radius: 50px;
-    padding: 10px 20px;
-    font-weight: bold;
-    transition: all 0.3s ease;
 }
 
 .btn-danger:hover {
@@ -96,6 +94,12 @@ body {
 .form-select:focus {
     box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.2);
     border-color: var(--primary-color);
+    background-color: var(--input-background);
+    color: var(--input-text);
+}
+
+.form-control::placeholder {
+    color: var(--input-placeholder);
 }
 
 .form-label {

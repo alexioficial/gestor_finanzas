@@ -14,3 +14,6 @@ def SCategoriasActivas(idusuario):
 
 def SCategoriasNombre(idusuario, nombre):
     return categoria.find_one({'idusuario': idusuario, 'nombre': nombre})
+
+def DCategoria(idusuario, idcategoria):
+    return categoria.delete_one({'idusuario': idusuario, 'idcategoria': idcategoria})

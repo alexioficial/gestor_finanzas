@@ -4,6 +4,8 @@
 
 {% block content %}
 
+<input type="password" id="idcategoria" class="d-none">
+
 <div class="container mt-5">
     <div class="row">
         <div class="col-md-6 mb-4">
@@ -23,9 +25,11 @@
                             <span class="theme-switch-slider"></span>
                         </label>
                     </div>
-                    <button id="addcategory" type="submit" class="btn btn-primary w-100"><i class="fa-solid fa-plus"></i> Agregar Categoria</button>
-                    <button id="editcategory" type="submit" class="btn btn-primary w-100 d-none"><i class="fa-solid fa-pen-to-square"></i> Editar Categoria</button>
-                    <button id="cleanButton" type="submit" class="btn btn-danger w-100 mt-2"><i class="fa-solid fa-ban"></i> Cancelar</button>
+                    <button id="btn_guardar" class="btn btn-primary w-100"><i class="fa-solid fa-plus"></i> Guardar</button>
+                    <div class="d-flex mt-2">
+                        <button id="btn_limpiar_categoria" class="btn btn-danger w-50 me-2"><i class="fa-solid fa-ban"></i> Cancelar</button>
+                        <button id="btn_eliminar" class="btn btn-danger w-50"><i class="fa-solid fa-trash"></i> Eliminar</button>
+                    </div>
                 </div>
             </div>
         </div>

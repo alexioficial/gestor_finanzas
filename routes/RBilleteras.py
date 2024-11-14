@@ -34,6 +34,7 @@ def BuscarBilleteras():
         billeteras = mbilletera.SBilleteras(idusuario)
         for billetera in billeteras:
             billetera['_id'] = str(billetera['_id'])
+            billetera['created_at'] = billetera['created_at'].strftime('%d/%m/%Y %H:%M:%S')
             es_activa = billetera['status']
             activo = 'danger' if not es_activa else 'success'
             status_text = 'ACTIVA' if es_activa else 'INACTIVA'
@@ -64,8 +65,8 @@ def EliminarBilletera():
 def LlenarDdlBilleteras():
     try:
         idusuario = session['idusuario']
-        billeteras = mbilletera.SBilleteras(idusuario)
-        html = ''
+        billeteras = mbilletera.SBilleterasActivas(idusuario)
+        html = '<option value="0">Todas</option>'
         for billetera in billeteras:
             html += f'<option value="{billetera["idbilletera"]}">{billetera["nombre"]}</option>'
         return {'status': 0, 'html': html}

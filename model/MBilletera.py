@@ -1,7 +1,15 @@
 from components.conexion import billetera, GenerarUUID
+from datetime import datetime
 
 def RegBilletera(idusuario, nombre, status):
-    return billetera.insert_one({'idbilletera': GenerarUUID(), 'nombre': nombre, 'status': status, 'idusuario': idusuario})
+    return billetera.insert_one({
+        'idbilletera': GenerarUUID(), 
+        'nombre': nombre, 
+        'status': 'A' if status else 'I', 
+        'idusuario': idusuario,
+        'balance': 0.0,
+        'created_at': datetime.now()
+    })
 
 def UBilletera(idusuario, idbilletera, nombre, status):
     return billetera.update_one({'idusuario': idusuario, 'idbilletera': idbilletera}, {'$set': {'nombre': nombre, 'status': status}})

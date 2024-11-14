@@ -16,10 +16,20 @@ async function LlenarDdlCategorias() {
     $('#categoria_gasto').html(dataGastos.html);
 }
 
+async function LlenarDdlBilleteras() {
+    const resp = await tools.PostBack('/LlenarDdlBilleteras', {});
+    if (resp.status == 1) {
+        alert(resp.msj);
+        return;
+    }
+    $('#ddl_billetera').html(resp.html);
+}
+
 async function RegIngreso() {
     const datos = {
         idcategoria: $('#categoria_ingreso').val(),
-        monto: $('#monto_ingreso').val()
+        monto: $('#monto_ingreso').val(),
+        idbilletera: $('#ddl_billetera').val()
     }
     const data = await tools.PostBack('/RegIngreso', datos);
     if (data.status == 1) {
@@ -33,7 +43,8 @@ async function RegIngreso() {
 async function RegGasto() {
     const datos = {
         idcategoria: $('#categoria_gasto').val(),
-        monto: $('#monto_gasto').val()
+        monto: $('#monto_gasto').val(),
+        idbilletera: $('#ddl_billetera').val()
     }
     const data = await tools.PostBack('/RegGasto', datos);
     if (data.status == 1) {
@@ -45,12 +56,16 @@ async function RegGasto() {
 }
 
 async function CargarDatos() {
-    const resp = await tools.PostBack('/ObtenerDatosInicio', {});
+    const datos = {
+        idbilletera: $('#ddl_billetera').val()
+    }
+    const resp = await tools.PostBack('/ObtenerDatosInicio', datos);
     if (resp.status == 1) {
         alert(resp.msj);
         return;
     }
     $('#balance_total').html(resp.dtusuario.balance);
+    $('#balance_billetera').html(resp.dtbilletera.balance);
     $('#lista_de_transacciones').empty();
     resp.transacciones.forEach(transaccion => {
         $('#lista_de_transacciones').append(`
@@ -68,9 +83,11 @@ async function CargarDatos() {
 $(() => {
     $('.9N_2D').mask('000,000,000.00', {reverse: true});
     LlenarDdlCategorias();
+    LlenarDdlBilleteras();
     CargarDatos();
     tools.Enter('#monto_ingreso', () => RegIngreso());
     tools.Enter('#monto_gasto', () => RegGasto());
     $('#btn_reg_ingreso').click(() => RegIngreso());
     $('#btn_reg_gasto').click(() => RegGasto());
+    $('#ddl_billetera').change(() => CargarDatos());
 });

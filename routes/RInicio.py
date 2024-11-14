@@ -2,6 +2,7 @@ from flask import Blueprint, render_template, url_for, session, request
 from routes.RAuth import login_requerido
 import model.MAuth as mauth
 import model.MGastosIngresos as mgastosingresos
+import model.MBilletera as mbilletera
 
 bp = Blueprint('Inicio', __name__)
 
@@ -21,17 +22,25 @@ def Logout():
 @bp.post('/ObtenerDatosInicio')
 def ObtenerDatosInicio():
     try:
+        data = request.get_json()
+        idbilletera = data.get('idbilletera')
         dtusuario = mauth.SUsuarioPorId(session['idusuario'])
         dtusuario['_id'] = str(dtusuario['_id'])
         dtusuario['created_at'] = dtusuario['created_at'].strftime('%d/%m/%Y')
         dtusuario['balance'] = f'${dtusuario["balance"]:,.2f}'
-        transacciones = mgastosingresos.SGastosIngresosPorIdUsuario(session['idusuario'])
+        transacciones = mgastosingresos.SGastosIngresosPorIdUsuario(session['idusuario'], idbilletera)
+        if idbilletera != '0':
+            dtbilletera = mbilletera.billetera.find_one({'idusuario': session['idusuario'], 'idbilletera': idbilletera})
+            dtbilletera['balance'] = f'${dtbilletera["balance"]:,.2f}'
+            dtbilletera['_id'] = str(dtbilletera['_id'])
+        else:
+            dtbilletera = {'balance': dtusuario['balance']}
         for transaccion in transacciones:
             transaccion['_id'] = str(transaccion['_id'])
             transaccion['created_at'] = transaccion['created_at'].strftime('%d/%m/%Y')
             transaccion['categoria']['_id'] = str(transaccion['categoria']['_id'])
             transaccion['monto'] = f'${transaccion["monto"]:,.2f}'
-        return {'status': 0, 'dtusuario': dtusuario, 'transacciones': transacciones}
+        return {'status': 0, 'dtusuario': dtusuario, 'transacciones': transacciones, 'dtbilletera': dtbilletera}
     except Exception as e:
         return {'status': 1, 'msj': str(e)}
 
@@ -42,12 +51,13 @@ def RegGasto():
         idusuario = session['idusuario']
         idcategoria = data.get('idcategoria')
         monto = data.get('monto')
+        idbilletera = data.get('idbilletera')
         try:
             monto = float(monto.replace(',', ''))
         except:
             monto = 0.0
         if monto > 0:
-            mgastosingresos.RGastosIngresos(idusuario, idcategoria, monto, 'G')
+            mgastosingresos.RGastosIngresos(idusuario, idcategoria, monto, 'G', idbilletera)
         return {'status': 0}
     except Exception as e:
         return {'status': 1, 'msj': str(e)}
@@ -59,12 +69,13 @@ def RegIngreso():
         idusuario = session['idusuario']
         idcategoria = data.get('idcategoria')
         monto = data.get('monto')
+        idbilletera = data.get('idbilletera')
         try:
             monto = float(monto.replace(',', ''))
         except:
             monto = 0.0
         if monto > 0:
-            mgastosingresos.RGastosIngresos(idusuario, idcategoria, monto, 'I')
+            mgastosingresos.RGastosIngresos(idusuario, idcategoria, monto, 'I', idbilletera)
         return {'status': 0}
     except Exception as e:
         return {'status': 1, 'msj': str(e)}

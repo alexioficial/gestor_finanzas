@@ -5,8 +5,37 @@
 {% block content %}
 
 <style>
-    #balance_total {
+    .balance-card {
+        background: linear-gradient(135deg, var(--primary-color), #7f5a83);
+        color: white;
+    }
+    
+    .billetera-card {
+        background: linear-gradient(135deg, #b96398, var(--primary-color));
+        color: white;
+    }
+    
+    .balance-amount {
+        font-size: 2.5rem;
+        font-weight: bold;
+    }
+
+    #balance_total, #balance_billetera {
         font-size: calc(1.5rem + 0.5vw);
+    }
+    
+    .balance-card {
+        height: fit-content;
+    }
+    
+    .transactions-container {
+        max-height: calc(2 * (3.5rem + 2rem)) !important;
+        overflow-y: auto;
+    }
+
+    #ddl_billetera {
+        font-size: 1.2rem;
+        font-weight: bold;
     }
 </style>
 
@@ -16,20 +45,29 @@
             <div class="card balance-card mb-4">
                 <div class="card-body text-center">
                     <h3 class="mb-3">Balance Total</h3>
-                    <p class="balance-amount mb-0" id="balance_total"></p>
+                    <p class="balance-amount mb-0" id="balance_total"></p> <br>
+                    <h3 class="mb-3">Balance Billetera</h3>
+                    <p class="balance-amount mb-0" id="balance_billetera"></p>
                 </div>
             </div>
-            <div class="card">
+            <div class="card mb-4">
                 <div class="card-header">
                     <h3 class="mb-0"><i class="fas fa-list-ul me-2"></i>Transacciones Recientes</h3>
                 </div>
-                <div class="card-body" style="max-height: calc(100vh - 45vh) !important; overflow-y: auto;">
+                <div class="card-body transactions-container">
                     <ul id="lista_de_transacciones" class="list-group"></ul>
+                </div>
+            </div>
+            <div class="card billetera-card">
+                <div class="card-body text-center">
+                    <h3 class="mb-3">Billetera seleccionada</h3>
+                    <select id="ddl_billetera" class="form-select bg-transparent text-white border-0">
+                        <option value="0">Principal</option>
+                    </select>
                 </div>
             </div>
         </div>
 
-        <!-- Formularios de registro -->
         <div class="col-md-6">
             <!-- Ingresos -->
             <div class="card mb-4">

@@ -1,0 +1,103 @@
+{% extends 'base.html' %}
+
+{% block title %}Reporte Completo{% endblock title %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="mb-0"><i class="fas fa-chart-pie me-2"></i>Reporte Completo</h2>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <!-- Filtros -->
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Categoría</label>
+                            <select class="form-select" id="ddl_categoria">
+                                <option value="0">Todas</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Billetera</label>
+                            <select class="form-select" id="ddl_billetera">
+                                <option value="0">Todas</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label class="form-label">Tipo</label>
+                            <select class="form-select" id="ddl_tipo">
+                                <option value="T">Todos</option>
+                                <option value="I">Ingresos</option>
+                                <option value="G">Gastos</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label class="form-label">Fecha Inicial</label>
+                            <input type="text" class="form-control" id="txt_fechainicial">
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label class="form-label">Fecha Final</label>
+                            <input type="text" class="form-control" id="txt_fechafinal">
+                        </div>
+                        <div class="col-md-12 mb-3">
+                            <label class="form-label">Ordenar por fecha</label>
+                            <select class="form-select" id="ddl_organizar">
+                                <option value="desc">Más reciente primero</option>
+                                <option value="asc">Más antiguo primero</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <!-- Botón Procesar -->
+                    <button id="btn_procesar" class="btn btn-primary w-100">
+                        <i class="fas fa-cogs me-2"></i>Procesar Reporte
+                    </button>
+
+                    <!-- Resultados -->
+                    <div id="resultados" class="mt-4" style="display: none;">
+                        <div class="row">
+                            <!-- Totales -->
+                            <div class="col-md-6 mb-4">
+                                <div class="card bg-primary text-white">
+                                    <div class="card-body">
+                                        <h4>Totales</h4>
+                                        <div id="totales_container"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Totales por Categoría -->
+                            <div class="col-md-6 mb-4">
+                                <div class="card bg-success text-white">
+                                    <div class="card-body">
+                                        <h4>Totales por Categoría</h4>
+                                        <div id="totales_categoria_container"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Lista de Transacciones -->
+                            <div class="col-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4 class="mb-0">Transacciones</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        <ul id="lista_transacciones" class="list-group"></ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
+
+{% block scripts %}
+<script src="/static/scripts/ReporteCompleto.js"></script>
+{% endblock scripts %}

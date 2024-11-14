@@ -28,4 +28,4 @@ def DCategoria(idusuario, idcategoria):
     return categoria.delete_one({'idusuario': idusuario, 'idcategoria': idcategoria})
 
 def SCategoriasPorTipo(idusuario, tipo):
-    return list(categoria.find({'idusuario': idusuario, 'tipo': tipo, 'status': 'A'}))
+    return list(categoria.find({'idusuario': idusuario, 'tipo': tipo if tipo != 'T' else {'$exists': True}, 'status': 'A'}))

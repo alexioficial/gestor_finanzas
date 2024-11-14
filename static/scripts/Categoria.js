@@ -11,7 +11,8 @@ async function RegCategoria() {
     const datos = {
         idcategoria: $('#idcategoria').val(),
         txt_nombre: $('#txt_nombre').val(),
-        chk_status: $('#chk_status').prop('checked')
+        chk_status: $('#chk_status').prop('checked'),
+        ddl_tipo: $('#ddl_tipo').val()
     }
     const data = await tools.PostBack('/RegCategoria', datos);
     if (data.status == 1) {
@@ -49,6 +50,7 @@ function LlenarCampos(categoria) {
     $('#idcategoria').val(categoria.idcategoria);
     $('#txt_nombre').val(categoria.nombre);
     $('#chk_status').prop('checked', categoria.status);
+    $('#ddl_tipo').val(categoria.tipo);
 }
 
 $(() => {

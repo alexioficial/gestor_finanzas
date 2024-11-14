@@ -18,10 +18,12 @@ def RegCategoria():
         idcategoria = data.get('idcategoria')
         txt_nombre = data.get('txt_nombre')
         chk_status = data.get('chk_status')
+        ddl_tipo = data.get('ddl_tipo')
+        
         if idcategoria == '':
-            mcategoria.RegCategoria(idusuario, txt_nombre, chk_status)
+            mcategoria.RegCategoria(idusuario, txt_nombre, chk_status, ddl_tipo)
         else:
-            mcategoria.UCategoria(idusuario, idcategoria, txt_nombre, chk_status)
+            mcategoria.UCategoria(idusuario, idcategoria, txt_nombre, chk_status, ddl_tipo)
         return {'status': 0}
     except Exception as e:
         return {'status': 1, 'msj': str(e)}
@@ -63,8 +65,10 @@ def EliminarCategoria():
 @bp.post('/LlenarDdlCategorias')
 def LlenarDdlCategorias():
     try:
+        data = request.get_json()
         idusuario = session['idusuario']
-        categorias = mcategoria.SCategorias(idusuario)
+        tipo = data.get('tipo')
+        categorias = mcategoria.SCategoriasPorTipo(idusuario, tipo)
         html = ''
         for categoria in categorias:
             html += f'<option value="{categoria["idcategoria"]}">{categoria["nombre"]}</option>'

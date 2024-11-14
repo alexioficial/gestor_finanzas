@@ -9,7 +9,8 @@ usuario = db['usuario']
 gasto = db['gasto']
 ingreso = db['ingreso']
 categoria = db['categoria']
-gastosingreso = db['gastosingreso']
+gastosingresos = db['gastosingresos']
+billetera = db['billetera']
 
 usuario.create_index([("username", 1)], unique = True)
 

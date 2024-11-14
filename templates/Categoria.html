@@ -18,12 +18,21 @@
                         <label class="form-label">Nombre</label>
                         <input type="text" class="form-control" id="txt_nombre">
                     </div>
-                    <div class="mb-3">
-                        <label class="form-label">Estado</label> <br>
-                        <label class="theme-switch-toggle">
-                            <input type="checkbox" id="chk_status" checked>
-                            <span class="theme-switch-slider"></span>
-                        </label>
+                    <div class="row mb-3">
+                        <div class="col-md-6 mb-3 mb-md-0">
+                            <label class="form-label">Tipo</label>
+                            <select class="form-select" id="ddl_tipo">
+                                <option value="G">Gastos</option>
+                                <option value="I">Ingresos</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Estado</label> <br>
+                            <label class="theme-switch-toggle">
+                                <input type="checkbox" id="chk_status" checked>
+                                <span class="theme-switch-slider"></span>
+                            </label>
+                        </div>
                     </div>
                     <button id="btn_guardar" class="btn btn-primary w-100"><i class="fa-solid fa-plus"></i> Guardar</button>
                     <div class="d-flex mt-2">

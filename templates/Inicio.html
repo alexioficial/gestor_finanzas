@@ -3,43 +3,67 @@
 {% block title %}Inicio{% endblock title %}
 
 {% block content %}
+
+<style>
+    #balance_total {
+        font-size: calc(1.5rem + 0.5vw);
+    }
+</style>
+
 <div class="container mt-5">
     <div class="row justify-content-center">
-        <div class="col-md-8 mb-4">
+        <div class="col-md-6 mb-4">
             <div class="card balance-card mb-4">
                 <div class="card-body text-center">
                     <h3 class="mb-3">Balance Total</h3>
-                    <p class="balance-amount mb-0">$1,234.56</p>
+                    <p class="balance-amount mb-0" id="balance_total"></p>
                 </div>
             </div>
             <div class="card">
                 <div class="card-header">
                     <h3 class="mb-0"><i class="fas fa-list-ul me-2"></i>Transacciones Recientes</h3>
                 </div>
+                <div class="card-body" style="max-height: calc(100vh - 45vh) !important; overflow-y: auto;">
+                    <ul id="lista_de_transacciones" class="list-group"></ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Formularios de registro -->
+        <div class="col-md-6">
+            <!-- Ingresos -->
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h2 class="mb-0"><i class="fas fa-plus-circle me-2"></i>Nuevo Ingreso</h2>
+                </div>
                 <div class="card-body">
-                    <ul id="transactionList" class="list-group">
-                        <li class="list-group-item">
-                            Salario
-                            <span>
-                                <i class="fas fa-plus text-success me-2"></i>
-                                <span class="badge bg-success">+$2,500.00</span>
-                            </span>
-                        </li>
-                        <li class="list-group-item">
-                            Alquiler
-                            <span>
-                                <i class="fas fa-minus text-danger me-2"></i>
-                                <span class="badge bg-danger">-$800.00</span>
-                            </span>
-                        </li>
-                        <li class="list-group-item">
-                            Compras supermercado
-                            <span>
-                                <i class="fas fa-minus text-danger me-2"></i>
-                                <span class="badge bg-danger">-$150.00</span>
-                            </span>
-                        </li>
-                    </ul>
+                    <div class="mb-3">
+                        <label class="form-label">Monto</label>
+                        <input class="form-control 9N_2D" id="monto_ingreso">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Categoría</label>
+                        <select class="form-select" id="categoria_ingreso"></select>
+                    </div>
+                    <button id="btn_reg_ingreso" class="btn btn-success w-100">Registrar Ingreso</button>
+                </div>
+            </div>
+
+            <!-- Gastos -->
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="mb-0"><i class="fas fa-minus-circle me-2"></i>Nuevo Gasto</h2>
+                </div>
+                <div class="card-body">
+                    <div class="mb-3">
+                        <label class="form-label">Monto</label>
+                        <input class="form-control 9N_2D" id="monto_gasto">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Categoría</label>
+                        <select class="form-select" id="categoria_gasto"></select>
+                    </div>
+                    <button id="btn_reg_gasto" class="btn btn-danger w-100">Registrar Gasto</button>
                 </div>
             </div>
         </div>

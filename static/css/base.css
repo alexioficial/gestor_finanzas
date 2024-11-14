@@ -151,3 +151,27 @@ input:checked+.theme-switch-slider:before {
 .dark-theme .form-select {
     background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='%23ffffff' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
 }
+
+.side-menu-dropdown .side-menu-subitem {
+    padding-left: 20px;
+    text-decoration: none;
+    color: var(--text-color);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 12px 12px 20px;
+    transition: background-color 0.3s ease;
+    border-radius: 10px;
+}
+
+.side-menu-dropdown .side-menu-subitem:hover {
+    background-color: var(--list-item-hover);
+}
+
+.dropdown-toggle {
+    cursor: pointer;
+}
+
+.side-menu-dropdown .collapse {
+    background-color: var(--card-background);
+}
